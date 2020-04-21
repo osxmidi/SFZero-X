@@ -2,6 +2,8 @@
 
 The disk streaming version is at https://github.com/osxmidi/SFZero-X-DiskStreaming
 
+Binaries are at https://github.com/osxmidi/SFZero-X/releases
+
 Linux make instructions
 
 Place the unzipped SFZero-X master folder (this download/clone) into the ~/JUCE6 folder 
