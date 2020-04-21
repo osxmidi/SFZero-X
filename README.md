@@ -4,7 +4,7 @@ Linux make instructions
 
 Place the unzipped SFZero-X master folder (this download/clone) into the ~/JUCE6 folder
 
-There are 2 config options.
+There are basically 2 config options.
 
 1: Copy the JUCE6 modules folder to the plugin/JuceLibraryCode/ folder
 
@@ -39,7 +39,7 @@ Some libraries need to be installed
 
 sudo apt-get -y install webkit2gtk-4.0 git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
 
-cd into the ~/JUCE6/unzipped SFZero-X master folder/plugin/Builds/Linux
+cd into the ~/JUCE6/unzipped SFZero-X master folder/plugin/Builds/Linux folder
 
 make CONFIG=Release
 
