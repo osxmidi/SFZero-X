@@ -24,7 +24,7 @@ add
 #endif
 
 ```
- to the GCC section in the modules/juce_core/system/juce_Compilersupport.h file
+ to the GCC section in the modules/juce_core/system/juce_CompilerSupport.h file
  
  For Vst3, edit plugin/JuceLibraryCode/AppConfig.h 
  
