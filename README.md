@@ -12,7 +12,8 @@ There are basically 2 config options.
 
 or
 
-2: Reconfigure using Projucer
+2: Reconfigure using Projucer (the SFZero module is in the plugin/JuceLibraryCode/modules folder and the SFZero source files are in the plugin/Source folder).
+
 
 Some files may then need to be edited
 
