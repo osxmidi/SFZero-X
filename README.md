@@ -8,7 +8,7 @@ Place the unzipped SFZero-X master folder (this download/clone) into the ~/JUCE6
 
 There are basically 2 config options.
 
-1: Copy the JUCE6 modules folder to the plugin/JuceLibraryCode/ folder (for making the default Vst3 version)
+1: Copy the contents of the JUCE6 modules folder to the plugin/JuceLibraryCode/modules folder (for making the default Vst3 version)
 
 or
 
