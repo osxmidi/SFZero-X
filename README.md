@@ -46,7 +46,7 @@ To make the default Vst3 version, cd into the ~/JUCE6/unzipped SFZero-X master f
 
 make CONFIG=Release
 
-Binaries are produced in the plugin/Builds/Linux/build folder
+vst3 is installed into ~/.vst3
 
 ------------
 
