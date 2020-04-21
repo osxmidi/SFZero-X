@@ -16,20 +16,10 @@ or
 
 
 Some files may then need to be edited
-
-add 
-
-```
-#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 500
-#define JUCE_HAS_CONSTEXPR 1
-#endif
-
-```
- to the GCC section in the modules/juce_core/system/juce_CompilerSupport.h file
  
- For Vst3, edit plugin/JuceLibraryCode/AppConfig.h 
+For Vst3, edit plugin/JuceLibraryCode/AppConfig.h 
  
- and check that the below is entered
+and check that the below is entered
  
 ```
 #ifndef    JUCE_VST3_CAN_REPLACE_VST2
