@@ -1,82 +1,49 @@
 # SFZero-X
 
-The SFZero-X Disk Streaming version is at https://github.com/osxmidi/SFZero-X/tree/SFZero-X-DiskStreaming
-
 Linux make instructions
 
+Place the unzipped SFZero-X master folder (this download/clone) into the ~/JUCE6 folder
+
+There are 2 config options.
+
+1: Copy the JUCE6 modules folder to the plugin/JuceLibraryCode/ folder
+
+or
+
+2: Reconfigure using Projucer
+
+Some files may then need to be edited
+
+add 
+
+```
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 500
+#define JUCE_HAS_CONSTEXPR 1
+#endif
+
+```
+ to the GCC section in the modules/juce_core/system/juce_Compilersupport.h file
+ 
+ For Vst3, edit plugin/JuceLibraryCode/AppConfig.h 
+ 
+ and check that the below is entered
+ 
+```
+#ifndef    JUCE_VST3_CAN_REPLACE_VST2
+#define JUCE_VST3_CAN_REPLACE_VST2 0
+#endif 
+
+```
+ 
 Some libraries need to be installed
 
 sudo apt-get -y install webkit2gtk-4.0 git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
 
-Install JUCE into ~/JUCE
-
-Enable GPL mode
-
-Edit ~/JUCE/extras/Projucer/JuceLibraryCode/AppConfig.h
-
-and change #define JUCER_ENABLE_GPL_MODE to #define JUCER_ENABLE_GPL_MODE 1
-
-Place the unzipped SFZero module folder https://github.com/osxmidi/SFZero-X-Module into the ~/JUCE/modules folder and rename the folder to SFZero
-
-Place the unzipped SFZero-master folder (this download/clone) into the ~/JUCE folder
-
-Place the vst2.4 sdk's pluginterfaces folder into ~/JUCE/modules/juce_audio_plugin_client/VST/
-
-cd into ~/JUCE/Unzipped SFZero-master folder/plugin/Builds/Linux
+cd into ~/JUCE6/unzipped SFZero-X master folder/plugin/Builds/LinuxMakefile
 
 make CONFIG=Release
 
-Binaries are produced in the ~/JUCE/Unzipped SFZero-master folder/plugin/Builds/Linux/build folder
-
-------------
-
-The above instructions also apply to the SFZero-X-DiskStreaming branch except the makefile folder is ~/JUCE/unzipped SFZero-X Disk Streaming master folder/plugin/Builds/LinuxMakefile.
-
-------------
-
-To make without webkit dependencies
-
-use Makefile-nowebkit (rename Makefile-nowebkit to Makefile and then make CONFIG=Release)
-
-Some edits need to be made in 2 files
-
---------
-
-juce_gui_extra.h in
-
-/JUCE/modules/juce_gui_extra/
-
-change
-
-#ifndef JUCE_WEB_BROWSER
-
-#define JUCE_WEB_BROWSER 1
-
-#endif
-
-to
-
-#ifndef JUCE_WEB_BROWSER
-
-// #define JUCE_WEB_BROWSER 1
-
-#endif
-
---------
-
-juce_ApplicationBase.cpp in
-
-/JUCE/modules/juce_events/messages/
-
-change
-
-#if JUCE_LINUX && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined(JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
-
-to
-
-#if JUCE_LINUX && JUCE_MODULE_AVAILABLE_juce_gui_extra && JUCE_WEB_BROWSER
-
-(there are 2 occurrences of it that need to be changed in the juce_ApplicationBase.cpp file)
+Binaries are produced in the plugin/Builds/Linux/build folder
 
 ------------
 
