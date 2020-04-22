@@ -6,6 +6,9 @@ Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
 Linux make instructions
 
+For Juce 5 copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
+SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
+
 Place the unzipped SFZero-X master folder (this download/clone) into the ~/JUCE6 folder 
 
 There are basically 2 config options.
