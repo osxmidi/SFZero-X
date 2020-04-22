@@ -4,6 +4,8 @@ The disk streaming version is at https://github.com/osxmidi/SFZero-X-DiskStreami
 
 Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
+The vst3 currently has gui issues with Bitwig, Reaper is ok.
+
 Linux make instructions
 
 For Juce 5 copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
