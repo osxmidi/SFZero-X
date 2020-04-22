@@ -269,7 +269,7 @@ void sfzero::SFZeroEditor::showVoiceInfo()
 void sfzero::SFZeroEditor::showVersion()
 {
   auto date = Time::getCompilationDate();
-  auto str = String::formatted("SFZero beta %d.%d.%d", date.getYear(), date.getMonth(), date.getDayOfMonth());
+  auto str = String::formatted("SFZero-X beta %d.%d.%d", date.getYear(), date.getMonth(), date.getDayOfMonth());
   pathLabel.setText(str, dontSendNotification);
   pathLabel.setColour(Label::textColourId, Colours::grey);
   hideProgress();
