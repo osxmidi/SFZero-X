@@ -46,6 +46,54 @@ vst3 is installed into ~/.vst3
 
 ------------
 
+Webkit
+
+To make without webkit dependencies
+
+remove all references to webkit in the Makefile
+
+Some edits also need to be made in 2 files
+
+--------
+
+juce_gui_extra.h in
+
+/JUCE/modules/juce_gui_extra/
+
+change
+
+#ifndef JUCE_WEB_BROWSER
+
+#define JUCE_WEB_BROWSER 1
+
+#endif
+
+to
+
+#ifndef JUCE_WEB_BROWSER
+
+// #define JUCE_WEB_BROWSER 1
+
+#endif
+
+--------
+
+juce_ApplicationBase.cpp in
+
+/JUCE/modules/juce_events/messages/
+
+change
+
+#if JUCE_LINUX && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined(JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
+
+to
+
+#if JUCE_LINUX && JUCE_MODULE_AVAILABLE_juce_gui_extra && JUCE_WEB_BROWSER
+
+(there are 2 occurrences of it that need to be changed in the juce_ApplicationBase.cpp file)
+
+------------
+
 Config options
 
 Midi note pitch shifting can be turned off by setting an environmental variable ie
