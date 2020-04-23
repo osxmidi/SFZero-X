@@ -64,5 +64,5 @@ etc etc
 
 ------------
 
-SFZero-X is based on a fork of the [original SFZero by Steve Folta] (https://github.com/stevefolta/SFZero)
+SFZero-X is based on a fork of the [original SFZero by Steve Folta] (https://github.com/stevefolta/SFZero) and an additional fork from https://github.com/altalogix/SFZero
 
