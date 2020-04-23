@@ -46,6 +46,24 @@ vst3 is installed into ~/.vst3
 
 ------------
 
+SFZero-X added opcodes
+
+Added Round Robin seq_length and seq_position opcodes and Random hirand and lorand and Modwheel gain_ccx loccx hiccx and Channel selection lochan hichan opcodes and Sample Trigger on_loccx on_hiccx opcodes and Crossfade xfin_lo xfin_hi xfout_lo xfout_hi key and MIDI CC opcodes.
+
+seq_length seq_position hirand and lorand, useful for randomizing and varying orchestral and drum samples etc.
+
+gain_ccx, useful for orchestral and drum etc crescendos and diminuendos using MIDI CC.
+
+loccx hiccx, useful for sample selection using MIDI CC.
+
+lochan hichan useful for selecting and isolating MIDI channels.
+
+xfin_lo xfin_hi xfout_lo xfout_hi useful for crossfading.
+
+etc etc
+
+------------
+
 # SFZero, the Juce module version
 
 This is a fork of the [original SFZero by Steve Folta](https://github.com/stevefolta/SFZero), with the following changes:
