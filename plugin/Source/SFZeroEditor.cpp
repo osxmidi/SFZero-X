@@ -190,7 +190,8 @@ String loadstring = "";
   else
   loadstring = sfile.loadFileAsString();
 
-  FileChooser chooser("Select an SFZ file...", File(loadstring), "*.sfz;*.SFZ;*.sf2;*.SF2", false, false);
+  FileChooser chooser("Select an SFZ file...", File(loadstring), "*.sfz;*.SFZ;*.sf2;*.SF2");
+                      // , false, false);
 
   if (chooser.browseForFileToOpen())
   {
