@@ -33,6 +33,8 @@ and check that the below is entered
 #endif 
 
 ```
+
+To make with no Webkit, see the Webkit folder.
  
 Some libraries need to be installed
 
