@@ -52,7 +52,19 @@ To make without webkit dependencies
 
 remove all references to webkit in the Makefile
 
-Some edits also need to be made in 2 files
+Some edits also need to be made in 3 files
+
+--------
+
+AppConfig.h in 
+
+SFZero-X-master/plugin/JuceLibraryCode
+
+change #define JUCE_WEB_BROWSER to
+
+#ifndef    JUCE_WEB_BROWSER
+ #define JUCE_WEB_BROWSER 0
+#endif
 
 --------
 
