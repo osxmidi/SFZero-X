@@ -46,6 +46,16 @@ vst3 is installed into ~/.vst3
 
 ------------
 
+Config options
+
+Midi note pitch shifting can be turned off by setting an environmental variable ie
+
+export SFZEROTR=1
+
+When this is set, the samples play as they are with no midi note pitch shifting, which may be useful for drum samples etc.
+
+------------
+
 SFZero-X added opcodes
 
 Added Round Robin seq_length and seq_position opcodes and Random hirand and lorand and Modwheel gain_ccx loccx hiccx and Channel selection lochan hichan opcodes and Sample Trigger on_loccx on_hiccx opcodes and Crossfade xfin_lo xfin_hi xfout_lo xfout_hi key and MIDI CC opcodes.
