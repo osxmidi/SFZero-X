@@ -4,7 +4,7 @@ The disk streaming version is at https://github.com/osxmidi/SFZero-X-DiskStreami
 
 Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
-The vst3 currently has gui issues with Bitwig, Reaper is ok.
+For Bitwig, the vst3 needs Bitwig 3.2 or higher.
 
 Linux make instructions
 
