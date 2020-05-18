@@ -41,7 +41,7 @@ Some libraries need to be installed
 
 sudo apt-get -y install webkit2gtk-4.0 git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
 
-To make the default Vst3 version, cd into the ~/JUCE6/unzipped SFZero-X master folder/plugin/Builds/Linux folder
+To make the default Vst3 version, cd into the ~/JUCE6/unzipped SFZero-X master/plugin/Builds/Linux folder
 
 make CONFIG=Release
 
@@ -58,15 +58,15 @@ Copy the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modul
 For Juce 5 (current JUCE lv2 version) copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
 SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
 
-Unzip the SFZero-X-lv2-make.zip file in the SFZero-X master folder/plugin/Builds/Linux/lv2 folder and copy the Makefile to the SFZero-X master folder/plugin/Builds/Linux folder
+Unzip the SFZero-X-lv2-make.zip file in the SFZero-X master/plugin/Builds/Linux/lv2 folder and copy the Makefile to the SFZero-X master/plugin/Builds/Linux folder
 
-cd into SFZero-X master folder/plugin/Builds/Linux
+cd into the SFZero-X master/plugin/Builds/Linux folder
 
 make CONFIG=Release
 
 cd build
 
-copy lv2_ttl_generator and lvmake and makelv2 from the SFZero-X master folder/plugin/Builds/Linux/lv2 folder
+copy lv2_ttl_generator and lvmake and makelv2 from the SFZero-X master/plugin/Builds/Linux/lv2 folder
 
 ./makelv2
 
