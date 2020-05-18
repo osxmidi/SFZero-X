@@ -49,6 +49,24 @@ vst3 is installed into ~/.vst3
 
 ------------
 
+To make the lv2 download JUCE-lv2 from https://github.com/lv2-porting-project/JUCE
+
+Setup the modules in the same way as the vst3 instructions above.
+
+Unzip the SFZero-X-lv2-make.zip file in the SFZero-X master folder/plugin/Builds/Linux/lv2 folder and copy the Makefile to the SFZero-X master folder/plugin/Builds/Linux folder
+
+cd into SFZero-X master folder/plugin/Builds/Linux
+
+make CONFIG=Release
+
+cd build
+
+copy lv2_ttl_generator and lvmake and makelv2 from the SFZero-X master folder/plugin/Builds/Linux/lv2 folder
+
+./makelv2
+
+------------
+
 Config options
 
 Midi note pitch shifting can be turned off by setting an environmental variable ie
