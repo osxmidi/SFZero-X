@@ -51,7 +51,12 @@ vst3 is installed into ~/.vst3
 
 To make the lv2 download JUCE-lv2 from https://github.com/lv2-porting-project/JUCE
 
-Setup the modules in the same way as the vst3 instructions above.
+sudo apt-get install lv2-dev
+
+Copy the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder 
+
+For Juce 5 (current JUCE lv2 version) copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
+SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
 
 Unzip the SFZero-X-lv2-make.zip file in the SFZero-X master folder/plugin/Builds/Linux/lv2 folder and copy the Makefile to the SFZero-X master folder/plugin/Builds/Linux folder
 
