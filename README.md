@@ -49,7 +49,7 @@ vst3 is installed into ~/.vst3
 
 ------------
 
-To make the lv2 download JUCE-lv2 from https://github.com/lv2-porting-project/JUCE
+The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
 
 sudo apt-get install lv2-dev
 
