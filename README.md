@@ -39,7 +39,9 @@ To make with no Webkit, see the Webkit folder for manual config or choose the ju
  
 Some libraries need to be installed
 
-sudo apt-get -y install webkit2gtk-4.0 git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
+sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
+
+(also webkit2gtk-4.0 if using webkit)
 
 To make the default Vst3 version, cd into the ~/JUCE6/SFZero-X/plugin/Builds/Linux folder
 
