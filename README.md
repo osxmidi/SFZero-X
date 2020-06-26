@@ -8,14 +8,14 @@ For Bitwig, the vst3 needs Bitwig 3.2 or higher.
 
 Linux make instructions
 
+Rename the unzipped JUCE folder to JUCE and move it to the home folder
+
+Unzip this repository/clone inside the JUCE folder
+
 For Juce 5 copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
 SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
 
-Place the unzipped SFZero-X folder (this download/clone) into the ~/JUCE6 folder 
-
-There are basically 2 config options.
-
-1: Copy the contents of the JUCE6 modules folder to the plugin/JuceLibraryCode/modules folder (for making the default Vst3 version)
+1: Copy the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder (for making the default Vst3 version)
 
 or
 
@@ -42,8 +42,6 @@ To make with no Webkit, see the Webkit folder for manual config or choose the ju
  ---------
  
 Some libraries need to be installed
-
-Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
 
