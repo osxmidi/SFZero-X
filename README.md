@@ -47,7 +47,7 @@ sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-d
 
 (also webkit2gtk-4.0 if using webkit)
 
-To make the default Vst3 version, cd into the ~/JUCE6/SFZero-X/plugin/Builds/Linux folder
+To make the default Vst3 version, cd into the ~/JUCE/SFZero-X/plugin/Builds/Linux folder
 
 make CONFIG=Release
 
