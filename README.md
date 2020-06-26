@@ -55,7 +55,7 @@ The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-por
 
 sudo apt-get install lv2-dev
 
-Copy the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder 
+Copy/replace the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder 
 
 For Juce 5 (current JUCE lv2 version) copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
 SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
