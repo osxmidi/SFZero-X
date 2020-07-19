@@ -15,31 +15,11 @@ Unzip this repository/clone inside the JUCE folder
 For Juce 5 copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
 SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
 
-1: Copy the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder (for making the default Vst3 version)
+To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile then make CONFIG=Release
 
-or
-
-----------
-
-2: Reconfigure using Projucer (the SFZero module is in the SFZero-X/plugin/JuceLibraryCode/modules folder and needs to be copied to the JUCE/modules folder and the SFZero source files are in the SFZero-X/plugin/Source folder).
-
-Some files may then need to be edited
+Run the Projucer and load the jucer file in the unzipped folder and save the project
  
-For Vst3, edit plugin/JuceLibraryCode/AppConfig.h 
- 
-and check that the below is entered
- 
-```
-#ifndef    JUCE_VST3_CAN_REPLACE_VST2
-#define JUCE_VST3_CAN_REPLACE_VST2 0
-#endif 
-
-```
-
-To make with no Webkit, see the Webkit folder for manual config or choose the juce_gui_extra module in the Projucer and set 
- JUCE_WEB_BROWSER to Disabled.
- 
- ---------
+---------
  
 Some libraries need to be installed
 
@@ -58,6 +38,8 @@ vst3 is installed into ~/.vst3
 The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
 
 sudo apt-get install lv2-dev
+
+Make the Projucer and save the project as above.
 
 Copy/replace the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder 
 
