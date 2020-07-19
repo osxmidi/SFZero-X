@@ -12,6 +12,8 @@ Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 Unzip this repository/clone inside the JUCE folder
 
+copy the plugin/JuceLibraryCode/modules/SFZero folder to the JUCE/modules folder
+
 For Juce 5 copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
 SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
 
