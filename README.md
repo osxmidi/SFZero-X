@@ -12,7 +12,7 @@ Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 Unzip this repository/clone inside the JUCE folder
 
-To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile then make CONFIG=Release -DJUCER_ENABLE_GPL_MODE=1
+To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile then enter into the Terminal, make CONFIG=Release -DJUCER_ENABLE_GPL_MODE=1
 
 Run the Projucer and load the SFZero-X jucer file in the unzipped folder and save the project (disable JUCE_VST3_CAN_REPLACE_VST2 in the juce_audio_plugin_client module options).
 
