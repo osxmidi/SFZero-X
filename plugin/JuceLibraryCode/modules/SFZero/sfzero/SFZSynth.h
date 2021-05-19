@@ -20,9 +20,11 @@ public:
   virtual ~Synth() {}
 
   void noteOn(int midiChannel, int midiNoteNumber, float velocity) override;
+  void noteOn2(int midiChannel, int midiNoteNumber, float velocity, sfzero::Voice *voice);
   void noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff) override;
   
   void triggernote(int midiChannel, int controllerNumber, int controllerValue);
+  void triggernote2();
   
   void handleController (int midiChannel, int controllerNumber, int controllerValue) override;
 
@@ -33,8 +35,10 @@ public:
   int numVoicesUsed();
   juce::String voiceInfoString();
 
-private:
   int noteVelocities_[128];
+
+private:
+ 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Synth)
   // int midiVolume_[16];
   public:

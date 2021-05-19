@@ -108,6 +108,49 @@ public:
   static inline float timecents2Secs(float timecents);
    
   float curvel;
+
+  int sustainoff;
+  int loopdone;
+
+  int curVelocity_;
+
+  double sourceSamplePosition_;
+
+  double sourceSamplePosition2;
+
+  int sourceSamplePositionupdate_;
+
+  int startedlate;
+
+  float ampegGain2;
+  float ampegSlope2;
+  int samplesUntilNextAmpSegment2;
+  bool ampSegmentIsExponential2;
+
+  float pitchegGain2;
+  float pitchegSlope2;
+  int samplesUntilNextAmpSegmentpitch2;
+  bool ampSegmentIsExponentialpitch2;
+   
+  float filteregGain2;
+  float filteregSlope2;
+  int samplesUntilNextAmpSegmentfilter2;
+  bool ampSegmentIsExponentialfilter2; 
+
+  float ampegGain3;
+  float ampegSlope3;
+  int samplesUntilNextAmpSegment3;
+  bool ampSegmentIsExponential3;
+
+  float pitchegGain3;
+  float pitchegSlope3;
+  int samplesUntilNextAmpSegmentpitch3;
+  bool ampSegmentIsExponentialpitch3;
+   
+  float filteregGain3;
+  float filteregSlope3;
+  int samplesUntilNextAmpSegmentfilter3;
+  bool ampSegmentIsExponentialfilter3; 
   
 private:
   Region *region_;
@@ -115,7 +158,7 @@ private:
   int curMidiNote_, curPitchWheel_;
   double pitchRatio_;
   float noteGainLeft_, noteGainRight_;
-  double sourceSamplePosition_;
+  
   EG ampeg_, pitcheg_, filtereg_;
   juce::int64 sampleEnd_;
   juce::int64 loopStart_, loopEnd_;
@@ -123,7 +166,7 @@ private:
 
   // Info only.
   int numLoops_;
-  int curVelocity_;
+ 
 
   void calcPitchRatio();
   void killNote();

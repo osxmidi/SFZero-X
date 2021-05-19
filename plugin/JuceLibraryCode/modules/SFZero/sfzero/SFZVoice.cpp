@@ -14,7 +14,12 @@
 static const float globalGain = -1.0;
 
 sfzero::Voice::Voice()
-    : region_(nullptr), trigger_(0), curMidiNote_(0), curPitchWheel_(0), pitchRatio_(0), noteGainLeft_(0), noteGainRight_(0), sourceSamplePosition_(0), sampleEnd_(0), loopStart_(0), loopEnd_(0), numLoops_(0), curVelocity_(0), filterinit(0), blocklfopitch(0), blocklfotrem(0), blocklfofilter(0), blockresetpitch(0), blockresettrem(0), blockresetfilter(0), cutoffadj(0), samplecount(0), cutoffhold(0)
+    : region_(nullptr), trigger_(0), curMidiNote_(0), curPitchWheel_(0), pitchRatio_(0), noteGainLeft_(0), noteGainRight_(0), sourceSamplePosition_(0), sampleEnd_(0), loopStart_(0), loopEnd_(0), numLoops_(0), curVelocity_(0), filterinit(0), blocklfopitch(0), blocklfotrem(0), blocklfofilter(0), blockresetpitch(0), blockresettrem(0), blockresetfilter(0), cutoffadj(0), samplecount(0), cutoffhold(0), sourceSamplePositionupdate_(0), startedlate(0), ampegGain2(0.0f),ampegSlope2(0.0f), samplesUntilNextAmpSegment2(0), ampSegmentIsExponential2(false),
+    pitchegGain2(0.0f),pitchegSlope2(0.0f), samplesUntilNextAmpSegmentpitch2(0), ampSegmentIsExponentialpitch2(false),
+filteregGain2(0.0f),filteregSlope2(0.0f), samplesUntilNextAmpSegmentfilter2(0), ampSegmentIsExponentialfilter2(false),    
+ampegGain3(0.0f),ampegSlope3(0.0f), samplesUntilNextAmpSegment3(0), ampSegmentIsExponential3(false),
+    pitchegGain3(0.0f),pitchegSlope3(0.0f), samplesUntilNextAmpSegmentpitch3(0), ampSegmentIsExponentialpitch3(false),
+filteregGain3(0.0f),filteregSlope3(0.0f), samplesUntilNextAmpSegmentfilter3(0), ampSegmentIsExponentialfilter3(false)    
         // , midiVolume_(127)
 {        
   ampeg_.setExponentialDecay(true);
@@ -897,21 +902,72 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
 
   // Cache some values, to give them at least some chance of ending up in
   // registers.
-  double sourceSamplePosition = this->sourceSamplePosition_;      
-  float ampegGain = ampeg_.getLevel();
-  float ampegSlope = ampeg_.getSlope();
-  int samplesUntilNextAmpSegment = ampeg_.getSamplesUntilNextSegment();
-  bool ampSegmentIsExponential = ampeg_.getSegmentIsExponential();
   
-  float pitchegGain = pitcheg_.getLevel();
-  float pitchegSlope = pitcheg_.getSlope();
-  int samplesUntilNextAmpSegmentpitch = pitcheg_.getSamplesUntilNextSegment();
-  bool ampSegmentIsExponentialpitch = pitcheg_.getSegmentIsExponential();
+  double sourceSamplePosition;
   
-  float filteregGain = filtereg_.getLevel();
-  float filteregSlope = filtereg_.getSlope();
-  int samplesUntilNextAmpSegmentfilter = filtereg_.getSamplesUntilNextSegment();
-  bool ampSegmentIsExponentialfilter = filtereg_.getSegmentIsExponential();
+  float ampegGain;
+  float ampegSlope;
+  int samplesUntilNextAmpSegment; 
+  bool ampSegmentIsExponential; 
+  
+  float pitchegGain; 
+  float pitchegSlope; 
+  int samplesUntilNextAmpSegmentpitch; 
+  bool ampSegmentIsExponentialpitch; 
+  
+  float filteregGain; 
+  float filteregSlope; 
+  int samplesUntilNextAmpSegmentfilter; 
+  bool ampSegmentIsExponentialfilter; 
+    
+  if(sourceSamplePositionupdate_ == 1)
+  {
+  sourceSamplePosition = sourceSamplePosition2;  
+  sourceSamplePositionupdate_ = 0; 
+ 
+  ampegGain = ampegGain2;
+  ampegSlope = ampegSlope2;
+  samplesUntilNextAmpSegment = samplesUntilNextAmpSegment2;
+  ampSegmentIsExponential = ampSegmentIsExponential2;  
+  
+  pitchegGain = pitchegGain2;
+  pitchegSlope = pitchegSlope2;
+  samplesUntilNextAmpSegmentpitch = samplesUntilNextAmpSegmentpitch2;
+  ampSegmentIsExponentialpitch = ampSegmentIsExponentialpitch2;
+    
+  filteregGain = filteregGain2;
+  filteregSlope = filteregSlope2;
+  samplesUntilNextAmpSegmentfilter = samplesUntilNextAmpSegmentfilter2;
+  ampSegmentIsExponentialfilter = ampSegmentIsExponentialfilter2; 
+ 
+  ampeg_.setLevel(ampegGain);
+  ampeg_.setSamplesUntilNextSegment(samplesUntilNextAmpSegment);
+  pitcheg_.setLevel(pitchegGain);
+  pitcheg_.setSamplesUntilNextSegment(samplesUntilNextAmpSegmentpitch);
+  filtereg_.setLevel(filteregGain);
+  filtereg_.setSamplesUntilNextSegment(samplesUntilNextAmpSegmentfilter);
+   
+  loopEnd_ = loopStart_;
+  }
+  else
+  {
+  sourceSamplePosition = this->sourceSamplePosition_;  
+  
+  ampegGain = ampeg_.getLevel();
+  ampegSlope = ampeg_.getSlope();
+  samplesUntilNextAmpSegment = ampeg_.getSamplesUntilNextSegment();
+  ampSegmentIsExponential = ampeg_.getSegmentIsExponential();
+  
+  pitchegGain = pitcheg_.getLevel();
+  pitchegSlope = pitcheg_.getSlope();
+  samplesUntilNextAmpSegmentpitch = pitcheg_.getSamplesUntilNextSegment();
+  ampSegmentIsExponentialpitch = pitcheg_.getSegmentIsExponential();
+  
+  filteregGain = filtereg_.getLevel();
+  filteregSlope = filtereg_.getSlope();
+  samplesUntilNextAmpSegmentfilter = filtereg_.getSamplesUntilNextSegment();
+  ampSegmentIsExponentialfilter = filtereg_.getSegmentIsExponential();  
+  }
   
   float loopStart = static_cast<float>(this->loopStart_);
   float loopEnd = static_cast<float>(this->loopEnd_);
@@ -932,7 +988,7 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
   s2z = 0;	
       
   int controlratemod = 64;
-  
+    
   while (--numSamples >= 0)
   {
     int pos = static_cast<int>(sourceSamplePosition);
@@ -1080,7 +1136,7 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
      blocklfopitch++;  
      }      
 
-    if(((region_->lfofilteron == 1) && (region_->lfodepthon == 1)) || (region_->filteregdepthon == 1))
+     if(((region_->lfofilteron == 1) && (region_->lfodepthon == 1)) || (region_->filteregdepthon == 1))
      {   
      int rem = blocklfofilter % controlratemod; 
      float filterdepth = 0.0; 
@@ -1280,9 +1336,18 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
       samplesUntilNextAmpSegmentfilter = filtereg_.getSamplesUntilNextSegment();
       ampSegmentIsExponentialfilter = filtereg_.getSegmentIsExponential();
     }
-    
-    if ((sourceSamplePosition >= sampleEnd) || ampeg_.isDone())
+         
+    if(startedlate == 1)
     {
+    if(region_->ccvalmoved[64] == 0)  
+    {
+    startedlate = 2;
+    }   
+    }  
+    
+    if ((sourceSamplePosition >= sampleEnd) || ampeg_.isDone() || startedlate == 2)
+    {
+      startedlate = 0;
       killNote();
       break;
     }
@@ -1295,6 +1360,37 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
   pitcheg_.setSamplesUntilNextSegment(samplesUntilNextAmpSegmentpitch);
   filtereg_.setLevel(filteregGain);
   filtereg_.setSamplesUntilNextSegment(samplesUntilNextAmpSegmentfilter);
+   
+  ampegGain2 = ampegGain;
+  ampegSlope2 = ampegSlope;
+  samplesUntilNextAmpSegment2 = samplesUntilNextAmpSegment;
+  ampSegmentIsExponential2 = ampSegmentIsExponential;  
+  
+  pitchegGain2 = pitchegGain;
+  pitchegSlope2 = pitchegSlope;
+  samplesUntilNextAmpSegmentpitch2 = samplesUntilNextAmpSegmentpitch;
+  ampSegmentIsExponentialpitch2 = ampSegmentIsExponentialpitch;
+  
+  filteregGain2 = filteregGain;
+  filteregSlope2 = filteregSlope;
+  samplesUntilNextAmpSegmentfilter2 = samplesUntilNextAmpSegmentfilter;
+  ampSegmentIsExponentialfilter2 = ampSegmentIsExponentialfilter;
+  
+  ampegGain3 = ampegGain;
+  ampegSlope3 = ampegSlope;
+  samplesUntilNextAmpSegment3 = samplesUntilNextAmpSegment;
+  ampSegmentIsExponential3 = ampSegmentIsExponential;  
+  
+  pitchegGain3 = pitchegGain;
+  pitchegSlope3 = pitchegSlope;
+  samplesUntilNextAmpSegmentpitch3 = samplesUntilNextAmpSegmentpitch;
+  ampSegmentIsExponentialpitch3 = ampSegmentIsExponentialpitch;
+  
+  filteregGain3 = filteregGain;
+  filteregSlope3 = filteregSlope;
+  samplesUntilNextAmpSegmentfilter3 = samplesUntilNextAmpSegmentfilter;
+  ampSegmentIsExponentialfilter3 = ampSegmentIsExponentialfilter;    
+
 }
 
 bool sfzero::Voice::isPlayingNoteDown() { return region_ && region_->trigger != sfzero::Region::release; }
