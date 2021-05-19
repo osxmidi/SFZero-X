@@ -559,7 +559,7 @@ void sfzero::Synth::handleController (int midiChannel, int controllerNumber, int
   
   Synthesiser::handleController (midiChannel, controllerNumber, controllerValue);
   
-  if(ccvalhandle[controllerNumber] > 0)
+  if(ccvalhandle[64] > 0)
   {
   triggernote2();  
   }
