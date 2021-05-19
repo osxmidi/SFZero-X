@@ -31,13 +31,13 @@ union genAmountType {
 struct iver
 {
 #include "sf2-chunks/iver.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 };
 
 struct phdr
 {
 #include "sf2-chunks/phdr.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 38;
 };
@@ -45,7 +45,7 @@ struct phdr
 struct pbag
 {
 #include "sf2-chunks/pbag.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 4;
 };
@@ -53,7 +53,7 @@ struct pbag
 struct pmod
 {
 #include "sf2-chunks/pmod.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 10;
 };
@@ -61,7 +61,7 @@ struct pmod
 struct pgen
 {
 #include "sf2-chunks/pgen.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 4;
 };
@@ -69,7 +69,7 @@ struct pgen
 struct inst
 {
 #include "sf2-chunks/inst.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 22;
 };
@@ -77,7 +77,7 @@ struct inst
 struct ibag
 {
 #include "sf2-chunks/ibag.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 4;
 };
@@ -85,7 +85,7 @@ struct ibag
 struct imod
 {
 #include "sf2-chunks/imod.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 10;
 };
@@ -93,7 +93,7 @@ struct imod
 struct igen
 {
 #include "sf2-chunks/igen.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 4;
 };
@@ -101,7 +101,7 @@ struct igen
 struct shdr
 {
 #include "sf2-chunks/shdr.h"
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
 
   static const int sizeInFile = 46;
 };
@@ -125,7 +125,7 @@ struct Hydra
   Hydra();
   ~Hydra();
 
-  void readFrom(std::unique_ptr<juce::FileInputStream> file, juce::int64 pdtaChunkEnd);
+  void readFrom(juce::InputStream* file, juce::int64 pdtaChunkEnd);
   bool isComplete();
 };
 }

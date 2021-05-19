@@ -17,52 +17,52 @@
 
 #define SF2Field(type, name) readA##type(name, file)
 
-void sfzero::SF2::iver::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::iver::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/iver.h"
 }
 
-void sfzero::SF2::phdr::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::phdr::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/phdr.h"
 }
 
-void sfzero::SF2::pbag::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::pbag::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/pbag.h"
 }
 
-void sfzero::SF2::pmod::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::pmod::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/pmod.h"
 }
 
-void sfzero::SF2::pgen::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::pgen::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/pgen.h"
 }
 
-void sfzero::SF2::inst::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::inst::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/inst.h"
 }
 
-void sfzero::SF2::ibag::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::ibag::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/ibag.h"
 }
 
-void sfzero::SF2::imod::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::imod::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/imod.h"
 }
 
-void sfzero::SF2::igen::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::igen::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/igen.h"
 }
 
-void sfzero::SF2::shdr::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::SF2::shdr::readFrom(juce::InputStream* file)
 {
 #include "sf2-chunks/shdr.h"
 }
@@ -86,7 +86,7 @@ sfzero::SF2::Hydra::~Hydra()
   delete shdrItems;
 }
 
-void sfzero::SF2::Hydra::readFrom(std::unique_ptr<juce::FileInputStream> file, juce::int64 pdtaChunkEnd)
+void sfzero::SF2::Hydra::readFrom(juce::InputStream* file, juce::int64 pdtaChunkEnd)
 {
   int i, numItems;
 
@@ -98,7 +98,7 @@ void sfzero::SF2::Hydra::readFrom(std::unique_ptr<juce::FileInputStream> file, j
     chunkName##Items = new SF2::chunkName[numItems];                                                                             \
     for (i = 0; i < numItems; ++i)                                                                                               \
     {                                                                                                                            \
-      chunkName##Items[i].readFrom(std::move(file));                                                                                        \
+      chunkName##Items[i].readFrom(file);                                                                                        \
     }                                                                                                                            \
   }                                                                                                                              \
   else
@@ -106,13 +106,13 @@ void sfzero::SF2::Hydra::readFrom(std::unique_ptr<juce::FileInputStream> file, j
   while (file->getPosition() < pdtaChunkEnd)
   {
     sfzero::RIFFChunk chunk;
-    chunk.readFrom(std::move(file));
+    chunk.readFrom(file);
 
     HandleChunk(phdr) HandleChunk(pbag) HandleChunk(pmod) HandleChunk(pgen) HandleChunk(inst) HandleChunk(ibag) HandleChunk(imod)
         HandleChunk(igen) HandleChunk(shdr)
     {
     }
-    chunk.seekAfter(std::move(file));
+    chunk.seekAfter(file);
   }
 }
 

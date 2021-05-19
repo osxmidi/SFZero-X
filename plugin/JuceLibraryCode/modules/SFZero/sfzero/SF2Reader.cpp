@@ -29,17 +29,17 @@ void sfzero::SF2Reader::read()
   sfzero::SF2::Hydra hydra;
   file_->setPosition(0);
   sfzero::RIFFChunk riffChunk;
-  riffChunk.readFrom(std::move(file_));
+  riffChunk.readFrom(file_.get());
   while (file_->getPosition() < riffChunk.end())
   {
     sfzero::RIFFChunk chunk;
-    chunk.readFrom(std::move(file_));
+    chunk.readFrom(file_.get());
     if (FourCCEquals(chunk.id, "pdta"))
     {
-      hydra.readFrom(std::move(file_), chunk.end());
+      hydra.readFrom(file_.get(), chunk.end());
       break;
     }
-    chunk.seekAfter(std::move(file_));
+    chunk.seekAfter(file_.get());
   }
   if (!hydra.isComplete())
   {
@@ -190,30 +190,30 @@ juce::AudioSampleBuffer *sfzero::SF2Reader::readSamples(double *progressVar, juc
   // Find the "sdta" chunk.
   file_->setPosition(0);
   sfzero::RIFFChunk riffChunk;
-  riffChunk.readFrom(std::move(file_));
+  riffChunk.readFrom(file_.get());
   bool found = false;
   sfzero::RIFFChunk chunk;
   while (file_->getPosition() < riffChunk.end())
   {
-    chunk.readFrom(std::move(file_));
+    chunk.readFrom(file_.get());
     if (FourCCEquals(chunk.id, "sdta"))
     {
       found = true;
       break;
     }
-    chunk.seekAfter(std::move(file_));
+    chunk.seekAfter(file_.get());
   }
   juce::int64 sdtaEnd = chunk.end();
   found = false;
   while (file_->getPosition() < sdtaEnd)
   {
-    chunk.readFrom(std::move(file_));
+    chunk.readFrom(file_.get());
     if (FourCCEquals(chunk.id, "smpl"))
     {
       found = true;
       break;
     }
-    chunk.seekAfter(std::move(file_));
+    chunk.seekAfter(file_.get());
   }
   if (!found)
   {

@@ -27,12 +27,12 @@ struct RIFFChunk
   juce::int64 start;
 
 
-  void readFrom(std::unique_ptr<juce::FileInputStream> file);
-  void seek(std::unique_ptr<juce::FileInputStream> file);
-  void seekAfter(std::unique_ptr<juce::FileInputStream> file);
+  void readFrom(juce::InputStream* file);
+  void seek(juce::InputStream* file);
+  void seekAfter(juce::InputStream* file);
 
   juce::int64 end() { return (start + size); }
-  juce::String readString(std::unique_ptr<juce::FileInputStream> file);
+  juce::String readString(juce::InputStream* file);
 
 
 /*

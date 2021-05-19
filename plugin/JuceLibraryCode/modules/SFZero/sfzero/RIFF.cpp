@@ -6,7 +6,7 @@
  *************************************************************************************/
 #include "RIFF.h"
 
-void sfzero::RIFFChunk::readFrom(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::RIFFChunk::readFrom(juce::InputStream* file)
 {
   file->read(&id, sizeof(sfzero::fourcc));
   size = static_cast<sfzero::dword>(file->readInt());
@@ -32,8 +32,8 @@ void sfzero::RIFFChunk::readFrom(std::unique_ptr<juce::FileInputStream> file)
   }
 }
 
-void sfzero::RIFFChunk::seek(std::unique_ptr<juce::FileInputStream> file) { file->setPosition(start); }
-void sfzero::RIFFChunk::seekAfter(std::unique_ptr<juce::FileInputStream> file)
+void sfzero::RIFFChunk::seek(juce::InputStream* file) { file->setPosition(start); }
+void sfzero::RIFFChunk::seekAfter(juce::InputStream* file)
 {
   juce::int64 next = start + size;
 
@@ -44,7 +44,7 @@ void sfzero::RIFFChunk::seekAfter(std::unique_ptr<juce::FileInputStream> file)
   file->setPosition(next);
 }
 
-juce::String sfzero::RIFFChunk::readString(std::unique_ptr<juce::FileInputStream> file)
+juce::String sfzero::RIFFChunk::readString(juce::InputStream* file)
 {
   juce::MemoryBlock memoryBlock(size);
   file->read(memoryBlock.getData(), static_cast<int>(memoryBlock.getSize()));
