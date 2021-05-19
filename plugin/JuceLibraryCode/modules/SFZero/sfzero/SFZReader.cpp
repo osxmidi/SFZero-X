@@ -1000,7 +1000,7 @@ void sfzero::Reader::read(const char *text, unsigned int length)
           }
           else if (opcode == "loop_mode" || opcode == "loopmode")
           {
-            bool modeIsSupported = value == "no_loop" || value == "one_shot" || value == "loop_continuous";
+            bool modeIsSupported = value == "no_loop" || value == "one_shot" || value == "loop_continuous" || value == "loop_sustain";
             if (modeIsSupported)
             {
               buildingRegion->loop_mode = static_cast<sfzero::Region::LoopMode>(loopModeValue(value));
