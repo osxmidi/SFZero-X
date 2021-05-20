@@ -609,18 +609,18 @@ void sfzero::Voice::startNote(int midiNoteNumber, float floatVelocity, juce::Syn
 
 void sfzero::Voice::stopNote(float /*velocity*/, bool allowTailOff)
 {
+  if (!allowTailOff || (region_ == nullptr))
+  {
+    killNote();
+    return;
+  }	
+	
   if(region_)
   {
   if((region_->filteregdepthon == 1) && (region_->filtereg.release < 1.0))
   cutoffhold = 1;
   }
  
-  if (!allowTailOff || (region_ == nullptr))
-  {
-    killNote();
-    return;
-  }
-
   if (region_->loop_mode != sfzero::Region::one_shot)
   {
     ampeg_.noteOff();
