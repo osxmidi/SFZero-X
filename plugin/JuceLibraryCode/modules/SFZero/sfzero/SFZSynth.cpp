@@ -434,9 +434,8 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
           {         
           voice->sourceSamplePositionupdate_ = 1;
           voice->sourceSamplePosition2 = voice3->sourceSamplePosition_;
-          voice->startedlate = 1;
                    
- 		  voice->ampegGain2 = voice3->ampegGain3;
+ 		       voice->ampegGain2 = voice3->ampegGain3;
           voice->ampegSlope2 = voice3->ampegSlope3;
           voice->samplesUntilNextAmpSegment2 = voice3->samplesUntilNextAmpSegment3;
           voice->ampSegmentIsExponential2 = voice3->ampSegmentIsExponential3;  
@@ -452,7 +451,12 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
           voice->ampSegmentIsExponentialfilter2 = voice3->ampSegmentIsExponentialfilter3;          
           }
          
-          startVoice(voice, sound, midiChannel, midiNoteNumber, velocity2);       
+          startVoice(voice, sound, midiChannel, midiNoteNumber, velocity2); 
+          
+          if(ccvalhandle[64] > 0)
+          voice->startedlate = 1;
+          else
+          voice->startedlate = 5;
         }
       }
     }
