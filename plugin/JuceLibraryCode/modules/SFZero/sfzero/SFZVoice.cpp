@@ -636,6 +636,9 @@ void sfzero::Voice::stopNote(float /*velocity*/, bool allowTailOff)
 
 void sfzero::Voice::stopNoteForGroup()
 {
+  if(isSustainPedalDown() || isSostenutoPedalDown()) 
+  return;
+	
   if(region_)
   {
   if((region_->filteregdepthon == 1) && (region_->filtereg.release < 1.0))
@@ -659,6 +662,9 @@ void sfzero::Voice::stopNoteForGroup()
 
 void sfzero::Voice::stopNoteQuick() 
 { 
+    if(isSustainPedalDown() || isSostenutoPedalDown()) 
+    return;
+	
     if(region_)
     {
     if((region_->filteregdepthon == 1) && (region_->filtereg.release < 1.0))
