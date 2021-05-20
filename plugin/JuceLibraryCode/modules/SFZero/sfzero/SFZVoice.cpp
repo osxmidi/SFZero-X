@@ -1350,6 +1350,14 @@ void sfzero::Voice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
     startedlate = 2;
     }   
     }  
+	  
+    if(startedlate == 5)
+    {
+    if(region_->ccvalmoved[66] == 0)  
+    {
+    startedlate = 2;
+    }   
+    }  	  
     
     if ((sourceSamplePosition >= sampleEnd) || ampeg_.isDone() || startedlate == 2)
     {
