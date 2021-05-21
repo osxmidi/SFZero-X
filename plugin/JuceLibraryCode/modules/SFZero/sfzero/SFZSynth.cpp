@@ -425,9 +425,7 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
           if(region->sw_vel == 1)
           velocity2 = prevvelval;           
           }   
-          
-          voice->sourceSamplePositionupdate_ = 1;
-          
+                    
           // SamplePosition;   
  
           if(voice3)
