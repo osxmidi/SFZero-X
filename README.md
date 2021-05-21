@@ -1,7 +1,5 @@
 # SFZero-X
 
-The disk streaming version is at https://github.com/osxmidi/SFZero-X-DiskStreaming
-
 Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
 For Bitwig, the vst3 needs Bitwig 3.2 or higher.
@@ -12,8 +10,10 @@ Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 Unzip this repository/clone inside the JUCE folder
 
-To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile then enter into the Terminal, 
-make CONFIG=Release CPPFLAGS+=-DJUCER_ENABLE_GPL_MODE=1
+To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile.
+Edit the Makefile and add "-DJUCER_ENABLE_GPL_MODE=1" to both the CPPFLAGS lines.
+Then enter into the Terminal, 
+make CONFIG=Release
 
 Run the Projucer and load the SFZero-X jucer file in the unzipped SFZero-X folder and save the project (disable JUCE_VST3_CAN_REPLACE_VST2 in the juce_audio_plugin_client module options before saving).
 
