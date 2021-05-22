@@ -10,18 +10,13 @@ Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 Unzip this repository/clone inside the JUCE folder
 
-To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile.
-Edit the Makefile and add "-DJUCER_ENABLE_GPL_MODE=1" to both the CPPFLAGS lines.
+To make the Projucer, change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile.
+Edit the Makefile and add "-DJUCER_ENABLE_GPL_MODE=1" to both the JUCE_CPPFLAGS lines.
 Then enter into the Terminal, 
 make CONFIG=Release
 
 Run the Projucer and load the SFZero-X jucer file in the unzipped SFZero-X folder and save the project (disable JUCE_VST3_CAN_REPLACE_VST2 in the juce_audio_plugin_client module options before saving).
 
-For Juce 5 (and maybe Juce6) copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
-SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
-
-copy the plugin/JuceLibraryCode/modules/SFZero folder to the JUCE/modules folder
- 
 ---------
  
 Some libraries need to be installed
@@ -40,7 +35,8 @@ vst3 is installed into ~/.vst3
 
 The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
 
-sudo apt-get install lv2-dev
+Install the lv2 development files.
+sudo apt-get install lv2-dev or sudo pacman -Sy lv2 for Manjaro
 
 Make the Projucer as above and save the project as a vst2 (change from vst3 to vst2 in the Projucer settings).
 
