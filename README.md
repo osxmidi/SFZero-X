@@ -2,8 +2,6 @@
 
 Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
-For Bitwig, the vst3 needs Bitwig 3.2 or higher.
-
 Linux make instructions
 
 Rename the unzipped JUCE folder to JUCE and move it to the home folder
