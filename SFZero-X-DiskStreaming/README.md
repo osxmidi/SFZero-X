@@ -11,7 +11,7 @@ Edit the Makefile and add "-DJUCER_ENABLE_GPL_MODE=1" to both the JUCE_CPPFLAGS 
 Then enter into the Terminal, 
 make CONFIG=Release
 
-Run the Projucer and load the SFZero-X-ds jucer file in the unzipped SFZero-X-DiskStreaming folder and save the project (disable JUCE_VST3_CAN_REPLACE_VST2 in the juce_audio_plugin_client module options before saving).
+Run the Projucer and load the SFZero-X-ds jucer file in the unzipped SFZero-X-DiskStreaming/plugin folder and save the project (disable JUCE_VST3_CAN_REPLACE_VST2 in the juce_audio_plugin_client module options before saving).
 
 ---------
  
