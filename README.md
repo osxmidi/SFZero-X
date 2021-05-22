@@ -42,18 +42,15 @@ The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-por
 
 sudo apt-get install lv2-dev
 
-Make the Projucer and save the project as above.
-
-Copy/replace the contents of the JUCE modules folder to the plugin/JuceLibraryCode/modules folder 
-
-For Juce 5 (current JUCE lv2 version) copy the files in SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero/Juce5 to 
-SFZero-X/plugin/JuceLibraryCode/modules/SFZero/sfzero
+Make the Projucer as above and save the project as a vst2 (change from vst3 to vst2 in the Projucer settings).
 
 Unzip the SFZero-X-lv2-make.zip file in the SFZero-X/plugin/Builds/Linux/lv2 folder and copy the Makefile to the SFZero-X/plugin/Builds/Linux folder
 
 cd into the SFZero-X/plugin/Builds/Linux folder
 
 make CONFIG=Release
+
+then
 
 cd build
 
