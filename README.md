@@ -52,6 +52,10 @@ copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make the
 
 ./makelv2
 
+lvmake is a renamed lv2_ttl_generator binary.
+
+Using g++ lv2_ttl_generator.c -o lvmake should make lvmake
+
 ------------
 
 Config options
