@@ -15,9 +15,9 @@
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="../../SDKs/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="SFZero-X"/>
+                       targetName="SFZero-X" defines="JUCE_MODAL_LOOPS_PERMITTED=1"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" targetName="SFZero-X"
-                       optimisation="3"/>
+                       optimisation="3" defines="JUCE_MODAL_LOOPS_PERMITTED=1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_extra" path="../../modules/juce_gui_extra"/>
@@ -69,7 +69,8 @@
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
     <MODULE id="SFZero" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_USE_OGGVORBIS="1" JUCE_WEB_BROWSER="0"/>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_USE_OGGVORBIS="1" JUCE_WEB_BROWSER="0"
+               JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <LIVE_SETTINGS>
     <LINUX/>
   </LIVE_SETTINGS>
