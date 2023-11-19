@@ -28,8 +28,7 @@ sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-d
 (also webkit2gtk-4.0 if using webkit)
 
 For Manjaro/EndeavourOS/Arch:
-sudo pacman -Sy libx11 gcc-multilib
-sudo pacman -Sy cmake freetype2 sqlite libxcb xcb-util gtkmm3 xcb-util-cursor libx11 pkgconfig xcb-util-keysyms
+sudo pacman -Sy libx11 gcc-multilib cmake freetype2 sqlite libxcb xcb-util gtkmm3 xcb-util-cursor libx11 pkgconfig xcb-util-keysyms
 
 To make the default Vst3 version, cd into the ~/JUCE/SFZero-X/plugin/Builds/Linux folder
 
