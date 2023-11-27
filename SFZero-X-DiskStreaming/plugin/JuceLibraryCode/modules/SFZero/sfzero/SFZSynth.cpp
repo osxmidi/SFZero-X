@@ -35,7 +35,7 @@ for(int i=0; i<16; i++)
     */
     
   threadCleaner = new SFZCleaner("Cleaner");
-  threadCleaner->startThread(5);    
+  threadCleaner->startThread(juce::Thread::Priority::normal);   
 }
 
 sfzero::Synth::~Synth(){
