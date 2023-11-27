@@ -33,13 +33,6 @@ for(int i=0;i<128;i++)
 for(int i=0; i<16; i++)
     midiVolume_[i] = 127;
     */
-    
-  threadCleaner = new SFZCleaner("Cleaner");
-  threadCleaner->startThread(juce::Thread::Priority::normal);   
-}
-
-sfzero::Synth::~Synth(){
-  delete threadCleaner;
 }
 
 void sfzero::Synth::triggernote(int midiChannel2, int controllerNumber, int controllerValue)
@@ -81,9 +74,9 @@ void sfzero::Synth::triggernote(int midiChannel2, int controllerNumber, int cont
       {
       sfzero::Region *region = sound->regionAt(i);
       if(region != nullptr)
-      {      
+      {
       if (region->matches4(ccvalhandle[region->ccnumlotrig], ccvalhandle[region->ccnumhitrig], randomval, midiChannel))
-      {   
+      { 
       for (int idx = voices.size(); --idx >= 0;)
       {
       sfzero::Voice *voice2 = dynamic_cast<sfzero::Voice *>(voices.getUnchecked(idx));
@@ -91,10 +84,10 @@ void sfzero::Synth::triggernote(int midiChannel2, int controllerNumber, int cont
       {
         continue;
       }
-      }   
+      }      
       
       sfzero::Voice *voice = dynamic_cast<sfzero::Voice *>(findFreeVoice(sound, midiNoteNumber, midiChannel, false));
-               
+              
         if (voice)
         {
         Synthesiser::noteOff(midiChannel, midiNoteNumber, velocity, allowTailOff);
@@ -104,8 +97,9 @@ void sfzero::Synth::triggernote(int midiChannel2, int controllerNumber, int cont
        }
       }
      }
-    } 
+    }
 }
+
 
 void sfzero::Synth::triggernote2()
 {
@@ -159,7 +153,7 @@ void sfzero::Synth::triggernote2()
 void sfzero::Synth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
 {
   int i;
-  float velocity2 = velocity; 
+  float velocity2 = velocity;
 
   const juce::ScopedLock locker(lock);
   
@@ -176,7 +170,7 @@ void sfzero::Synth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
   sfzero::Sound *sound;
   juce::SynthesiserSound * gh = getSound(0);
   sound = (sfzero::Sound *)gh;
-   
+  
   // Are any notes playing?  (Needed for first/legato trigger handling.)
   // Also stop any voices still playing this note.
   bool anyNotesPlaying = false;
@@ -227,8 +221,7 @@ void sfzero::Synth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
     {
       sfzero::Region *region = sound->regionAt(i);
       if(region != nullptr)
-      {      
-      
+      {
       if(region->swlaston == 1)
       {
       if(region->sw_last == midiNoteNumber)
@@ -248,8 +241,8 @@ void sfzero::Synth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
       for(int idx4=0;idx4<128;idx4++)
       {     
       region->swupdownarray[idx4] = swupdownarray[idx4];
-      }
-      
+      }       
+       
       if (region->matches2(midiNoteNumber, midiVelocity, trigger, randomval, ccvalhandle[region->ccnumlo], ccvalhandle[region->ccnumhi], polyvalhandle[0], chanvalhandle, midiChannel, &lastkeyval, &prevkeyval))    
       {
       group = region->group;    
@@ -289,14 +282,14 @@ void sfzero::Synth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
           velocity2 = prevvelval;           
           }         
          
-          startVoice(voice, sound, midiChannel, midiNoteNumber, velocity2);
+          startVoice(voice, sound, midiChannel, midiNoteNumber, velocity2);       
         }
       }
     }
+   } 
   }
-          prevkeyval = midiNoteNumber;
-          prevvelval = velocity;  
- } 
+  prevkeyval = midiNoteNumber;
+  prevvelval = velocity; 
 
   noteVelocities_[midiNoteNumber] = midiVelocity;
 }
@@ -440,7 +433,7 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
           voice->sourceSamplePositionupdate_ = 1;
           voice->sourceSamplePosition2 = voice3->sourceSamplePosition_;
                    
- 	     	  voice->ampegGain2 = voice3->ampegGain3;
+ 		       voice->ampegGain2 = voice3->ampegGain3;
           voice->ampegSlope2 = voice3->ampegSlope3;
           voice->samplesUntilNextAmpSegment2 = voice3->samplesUntilNextAmpSegment3;
           voice->ampSegmentIsExponential2 = voice3->ampSegmentIsExponential3;  
@@ -457,10 +450,11 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
           }
          
           startVoice(voice, sound, midiChannel, midiNoteNumber, velocity2); 
+          
           if(ccvalhandle[64] > 0)
           voice->startedlate = 1;
           else
-          voice->startedlate = 5;         
+          voice->startedlate = 5;
         }
       }
     }
@@ -471,6 +465,8 @@ void sfzero::Synth::noteOn2(int midiChannel, int midiNoteNumber, float velocity,
 
   noteVelocities_[midiNoteNumber] = midiVelocity;
 }
+
+
 
 void sfzero::Synth::noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff)
 {
@@ -502,7 +498,8 @@ void sfzero::Synth::noteOff(int midiChannel, int midiNoteNumber, float velocity,
     {
       sfzero::Region *region = sound->regionAt(i);
       if(region != nullptr)
-      {      
+      {
+      
       if(region->swlaston == 1)
       {
       if(region->sw_last == midiNoteNumber)
@@ -522,10 +519,10 @@ void sfzero::Synth::noteOff(int midiChannel, int midiNoteNumber, float velocity,
       for(int idx4=0;idx4<128;idx4++)
       {     
       region->swupdownarray[idx4] = swupdownarray[idx4];
-      }             
-      
+      }                    
+       
       if (region->matches3(midiNoteNumber, noteVelocities_[midiNoteNumber], trigger, randomval, ccvalhandle[region->ccnumlo], ccvalhandle[region->ccnumhi], polyvalhandle[0], chanvalhandle, midiChannel, &lastkeyval, &prevkeyval))
-      {   
+      {  
       sfzero::Voice *voice = dynamic_cast<sfzero::Voice *>(findFreeVoice(sound, midiNoteNumber, midiChannel, false));
       if (voice)
       { 
@@ -543,10 +540,10 @@ void sfzero::Synth::noteOff(int midiChannel, int midiNoteNumber, float velocity,
         startVoice(voice, sound, midiChannel, midiNoteNumber, noteVelocities_[midiNoteNumber] / 127.0f);
       }
     }
-   } 
+   }
   }
  }
-    swupdownarray[midiNoteNumber] = 0;
+   swupdownarray[midiNoteNumber] = 0; 
 }
 
 void sfzero::Synth::handleController (int midiChannel, int controllerNumber, int controllerValue)
@@ -563,19 +560,25 @@ void sfzero::Synth::handleController (int midiChannel, int controllerNumber, int
   ccvalhandle[controllerNumber] = controllerValue;
   
   Synthesiser::handleController (midiChannel, controllerNumber, controllerValue);
-
- /*
+  
   if((ccvalhandle[64] > 0) || (ccvalhandle[66] > 0)) 
   {
   triggernote2();  
   }
- */ 
   
   triggernote(midiChannel, controllerNumber, controllerValue);  
 }
 
 void sfzero::Synth::handleAftertouch (int midiChannel, int midiNoteNumber, int aftertouchValue)
-{  
+{
+  /*
+  switch(controllerNumber){
+    case 7:
+      midiVolume_[midiChannel-1] = controllerValue;
+      break;
+  }
+  */
+   
   polyvalhandle[0] = aftertouchValue;
   polyvalhandle[1] = midiNoteNumber;
   
@@ -583,11 +586,20 @@ void sfzero::Synth::handleAftertouch (int midiChannel, int midiNoteNumber, int a
 }
 
 void sfzero::Synth::handleChannelPressure (int midiChannel, int channelPressureValue)
-{  
+{
+  /*
+  switch(controllerNumber){
+    case 7:
+      midiVolume_[midiChannel-1] = controllerValue;
+      break;
+  }
+  */
+    
   chanvalhandle = channelPressureValue;
   
   Synthesiser::handleChannelPressure (midiChannel, channelPressureValue);
 }
+
 
 int sfzero::Synth::numVoicesUsed()
 {
