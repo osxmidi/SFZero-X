@@ -2,6 +2,8 @@
 
 Binaries are at https://github.com/osxmidi/SFZero-X/releases
 
+There is also the juicysfplugin sf2/sf3 soundfont player at https://github.com/osxmidi/juicysfplugin/tree/master
+
 Linux make instructions
 
 Rename the unzipped JUCE folder to JUCE and move it to the home folder
