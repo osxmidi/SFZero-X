@@ -40,6 +40,8 @@ make CONFIG=Release
 
 vst3 is installed into ~/.vst3
 
+The same procedure applies to the disk streaming version as well.
+
 ------------
 
 The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
