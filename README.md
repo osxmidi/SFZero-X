@@ -40,7 +40,7 @@ make CONFIG=Release
 
 vst3 is installed into ~/.vst3
 
-The same procedure applies to the disk streaming version as well.
+The same basic procedure applies to the disk streaming version as well at https://github.com/osxmidi/SFZero-X/tree/master/SFZero-X-DiskStreaming
 
 ------------
 
